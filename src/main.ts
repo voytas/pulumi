@@ -98,6 +98,7 @@ const runAction = async (config: Config): Promise<void> => {
     cancel: () =>
       stack.cancel({ onOutput, ...config.options }).then((r) => r.stdout),
     preview: async () => {
+      await stack.cancel(config.options);
       const { stdout, stderr } = await stack.preview(config.options);
       onOutput(stdout);
       onOutput(stderr);
