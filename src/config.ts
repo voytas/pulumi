@@ -57,6 +57,7 @@ export function makeConfig() {
         'destroy',
         'preview',
         'output',
+        'cancel',
       ] as const,
     }),
     stackName: getInput('stack-name', { required: true }),

@@ -130,7 +130,7 @@ jobs:
     name: Dotnet ${{ matrix.command }} on ${{ matrix.os }}
     strategy:
       matrix:
-        command: [up, refresh, destroy, preview, output]
+        command: [up, refresh, destroy, preview, output, cancel]
         os: [ubuntu-latest, macos-latest, windows-latest]
       fail-fast: false
     steps:
@@ -210,7 +210,7 @@ jobs:
     name: Golang ${{ matrix.command }} on ${{ matrix.os }}
     strategy:
       matrix:
-        command: [up, refresh, destroy, preview, output]
+        command: [up, refresh, destroy, preview, output, cancel]
         os: [ubuntu-latest, macos-latest, windows-latest]
       fail-fast: false
     steps:
@@ -290,7 +290,7 @@ jobs:
     name: NodeJS ${{ matrix.command }} on ${{ matrix.os }}
     strategy:
       matrix:
-        command: [up, refresh, destroy, preview, output]
+        command: [up, refresh, destroy, preview, output, cancel]
         os: [ubuntu-latest, macos-latest, windows-latest]
       fail-fast: false
     steps:
