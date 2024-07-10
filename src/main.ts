@@ -85,7 +85,7 @@ const runAction = async (config: Config): Promise<void> => {
     core.endGroup();
   }
 
-  core.startGroup(`pulumi ${config.command} on ${config.stackName} - cancel stack`);
+  core.startGroup(`pulumi ${config.command} on ${config.stackName}`);
 
   const actions: Record<Commands, () => Promise<string>> = {
     up: () => stack.up({ onOutput, ...config.options }).then((r) => r.stdout),
@@ -95,10 +95,9 @@ const runAction = async (config: Config): Promise<void> => {
       stack.refresh({ onOutput, ...config.options }).then((r) => r.stdout),
     destroy: () =>
       stack.destroy({ onOutput, ...config.options }).then((r) => r.stdout),
-    cancel: () =>
-      stack.cancel({ onOutput, ...config.options }).then((r) => r.stdout),
+    cancel: async () => { await stack.cancel(); return "stack cancelled"; },
     preview: async () => {
-      const { stdout, stderr } = await stack.cancel(config.options);
+      const { stdout, stderr } = await stack.preview(config.options);
       onOutput(stdout);
       onOutput(stderr);
       return stdout;
